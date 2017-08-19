@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import { Image, Header } from 'semantic-ui-react'
 
 class UserProfile extends Component {
 
@@ -6,8 +7,8 @@ class UserProfile extends Component {
     console.log(this.props)
     return(
     <span>
-      <img src={this.props.user.profile_picture_url} style={{'border-radius': '50%'}} />
-      <h1>{this.props.user.username}</h1>
+      <Image className="profile-img" style={{'display': 'inline'}} src={this.props.user.profile_picture_url} size='small' shape='circular' />
+      <Header style={{'display': 'inline-block'}} as='h1'>{this.props.user.username}</Header>
     </span>
   )
   }
