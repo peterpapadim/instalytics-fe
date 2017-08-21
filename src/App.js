@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UserProfile from './components/UserProfile'
-
+import StatsSummaryBar from "./components/StatsSummaryBar"
+import TopPhotoContainer from "./components/TopPhotoContainer"
 class App extends Component {
 
   state = {
-    user: {}
+    user: {},
+    pictures: {}
   }
   componentDidMount(){
     if (!window.location.href.split('?')[1]){
@@ -19,13 +21,24 @@ class App extends Component {
       fetch(url)
       .then((resp) => resp.json())
       .then(data => this.setState({ user: data }))
+      let mediaURL = `http://localhost:3000/api/v1/users/${id}/pictures`
+      fetch(mediaURL)
+      .then((resp) => resp.json())
+      .then((data) => this.setState({ pictures: data },function(){console.log(this.state)}))
     }
+
   }
 
   render() {
     return (
-      <div className="App">
-        <UserProfile user={this.state.user}/>
+      <div className="App ui grid">
+        <div className="six wide column">
+          <UserProfile user={this.state.user}/>
+          <TopPhotoContainer pictures={this.state.pictures}/>
+        </div>
+        <div className="ten wide column">
+          <StatsSummaryBar user={this.state.user}/>
+        </div>
       </div>
     );
   }

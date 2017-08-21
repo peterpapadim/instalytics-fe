@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import { Image, Header } from 'semantic-ui-react'
 
-class UserProfile extends Component {
+class UserProfile extends React.Component {
 
   render(){
     console.log(this.props)

@@ -1,11 +1,11 @@
 import React, {Component} from 'react';
-
+import {Card} from 'semantic-ui-react'
 class TopPhoto extends Component {
 
   render(){
     return(
-    <div />
-  )
+      <Card image={this.props.picture.thumbnail_url}></Card>
+    )
   }
 }
 

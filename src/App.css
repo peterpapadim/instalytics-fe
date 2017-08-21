@@ -1,3 +1,41 @@
 .profile-img {
   display: inline;
+  margin-top:20px!important;
+  margin-left: 10px;
+}
+
+.stats-bar{
+  padding-top:50px!important;
+  padding-left: 100px!important;
+}
+
+.photo-gallery-header{
+  text-align: center!important;
+}
+.photo-gallery-button{
+  margin-top: 10px!important;
+  margin-left: 50px!important;
+  margin-right: 50px!important;
+  margin-bottom: 10px!important;
+}
+
+
+.photo-gallery{
+  background-color: white;
+  height:325px;
+  width:100%;
+  overflow-y: auto;
+  overflow-x:hidden;
+  margin: 10px;
+  padding:10px;
+  border-radius: 5%;
+  border-width: 5px;
+  border-color: #78909c;
+  border-style: solid;
+
+}
+
+::-webkit-scrollbar {
+    width: 0px!important;
+    background: transparent!important; /* make scrollbar transparent */
 }
