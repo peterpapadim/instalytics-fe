@@ -1,17 +1,17 @@
 import React from 'react';
 import { Dropdown, Icon, Button } from 'semantic-ui-react';
+import Chart from './Chart'
 import '../App.css';
 
 class ChartsContainer extends React.Component{
 
   state = {
-    chartType: '',
-    chartData: []
+    chartType: 'line'
   }
 
   postsButtonClicked = (event) => {
     this.setState({
-      chartType: 'line',
+      chartType: 'not-line'
     })
   }
 
@@ -22,7 +22,7 @@ class ChartsContainer extends React.Component{
         <h2 className='charts-header'>Charts</h2>
         <Button.Group color='blue'>
           <div className="ui equal width grid">
-            <button onClick={this.chartButtonClicked} className="ui primary button chart-button">POSTS</button>
+            <button onClick={this.postsButtonClicked} className="ui primary button chart-button">POSTS</button>
             <Dropdown text='PHOTOS' icon='filter' floating labeled button className='icon chart-button'>
                 <Dropdown.Menu>
                   <Dropdown.Header icon='tags' content='Filter by' />
@@ -40,6 +40,7 @@ class ChartsContainer extends React.Component{
           </div>
         </Button.Group>
         <div className='chart'>
+          <Chart data={this.props.pictures} type={this.state.chartType}/>
         </div>
       </div>
     )

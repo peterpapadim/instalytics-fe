@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import './App.css';
+import * as d3 from 'd3';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UserProfile from './components/UserProfile'
 import StatsSummaryBar from "./components/StatsSummaryBar"
@@ -39,7 +40,7 @@ class App extends Component {
         </div>
         <div className="ten wide column">
           <StatsSummaryBar user={this.state.user}/>
-          <ChartsContainer />
+          <ChartsContainer pictures={this.state.pictures}/>
         </div>
       </div>
     );
