@@ -4,6 +4,7 @@ import { BrowserRouter as Router, Route } from 'react-router-dom';
 import UserProfile from './components/UserProfile'
 import StatsSummaryBar from "./components/StatsSummaryBar"
 import TopPhotoContainer from "./components/TopPhotoContainer"
+import ChartsContainer from "./components/ChartsContainer"
 class App extends Component {
 
   state = {
@@ -38,6 +39,7 @@ class App extends Component {
         </div>
         <div className="ten wide column">
           <StatsSummaryBar user={this.state.user}/>
+          <ChartsContainer />
         </div>
       </div>
     );
