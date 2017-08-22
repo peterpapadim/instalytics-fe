@@ -15,20 +15,25 @@ class Chart extends React.Component{
       case 'line':
         this.makeLineChart();
         break;
-      case 'bubble':
-        this.makeBubbleChart();
+      case 'bubble-likes':
+        this.makeBubbleChart("likes");
+        break;
+      case 'bubble-comments':
+        this.makeBubbleChart("comments");
         break;
     }
 
   }
 
-  makeBubbleChart = () => {
+  makeBubbleChart = (type) => {
     let width = 700
     let height = 500
+    let likesOrComments = (d) => {
+      return type==="likes" ? d.likes_count : d.comments_count
+    }
 
-
-    let radiusScale = d3.scaleSqrt().domain([d3.min(this.props.data, function(d){ return d.likes_count }),
-             d3.max(this.props.data, function(d){ return d.likes_count })]).range([10,65])
+    let radiusScale = d3.scaleSqrt().domain([d3.min(this.props.data, function(d){ return  likesOrComments(d)}),
+             d3.max(this.props.data, function(d){ return likesOrComments(d) })]).range([10,65])
 
     console.log("bbubbble time")
 
@@ -58,24 +63,37 @@ class Chart extends React.Component{
     .enter().append("circle")
     .attr('class', 'picture')
     .attr('r', function(d){
-      return radiusScale(d.likes_count)
+      return radiusScale(likesOrComments(d))
     })
     .attr("fill", function(d){
       return `url(#pic-${d.id})`
     })
     .attr("xlink:href", function(d){return d.thumbnail_url})
+    .on("mouseover", function(d,i){
+      let circle = d3.select(this)
+      let cx = circle["_groups"][0][0].cx.animVal.value
+      let cy = circle["_groups"][0][0].cy.animVal.value
+      let r = circle["_groups"][0][0].r.animVal.value
+      circle.attr("fill", "lightgrey")
 
-
+      svg.append('text')
+      .attr("x", cx -r/8 )
+      .attr("y", cy)
+      .text(`${likesOrComments(d)}`)
+    })
+    .on("mouseout", function(d,i){
+      d3.select(this).attr("fill", function(d){
+        return `url(#pic-${d.id})`
+      })
+      svg.selectAll('text').remove()
+    })
 
     let simulation = d3.forceSimulation()
       .force("x", d3.forceX(width / 2).strength(0.05))
       .force("y", d3.forceY(height / 2).strength(0.05))
       .force("collide", d3.forceCollide(function(d){
-        return radiusScale(d.likes_count) + 1
+        return radiusScale(likesOrComments(d)) + 1
       }))
-
-
-
 
 
     simulation.nodes(this.props.data)
@@ -91,7 +109,6 @@ class Chart extends React.Component{
         })
     }
   }
-
 
   makeLineChart = () => {
     d3.selection.prototype.moveToFront = function() {
@@ -117,7 +134,6 @@ class Chart extends React.Component{
 
       let xAxis = d3.axisBottom()
       .scale(xScale)
-
 
       svg.append("g").call(xAxis)
       .attr('class', 'xAxis')
@@ -166,7 +182,6 @@ class Chart extends React.Component{
       </div>
     )
   }
-
 
 }
 

@@ -15,9 +15,16 @@ class ChartsContainer extends React.Component{
     })
   }
 
-  photosButtonClicked = (event) => {
+  likesBubbleClicked = (event) => {
+      event.preventDefault()
       this.setState({
-        chartType: 'bubble'
+        chartType: 'bubble-likes'
+      })
+  }
+  commentsBubbleClicked = (event) => {
+      event.preventDefault()
+      this.setState({
+        chartType: 'bubble-comments'
       })
   }
 
@@ -32,8 +39,8 @@ class ChartsContainer extends React.Component{
             <Dropdown text='PHOTOS' icon='filter' onClick={this.photosButtonClicked } floating labeled button className='icon chart-button'>
                 <Dropdown.Menu>
                   <Dropdown.Header icon='tags' content='Filter by' />
-                  <Dropdown.Item><Icon name='heart' />Likes</Dropdown.Item>
-                  <Dropdown.Item><Icon name='comment' />Comments</Dropdown.Item>
+                  <Dropdown.Item onClick={this.likesBubbleClicked}><Icon name='heart' />Likes</Dropdown.Item>
+                  <Dropdown.Item onClick={this.commentsBubbleClicked}><Icon name='comment' />Comments</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
             <Dropdown text='FOLLOWERS' icon='filter' floating labeled button className='icon chart-button'>
