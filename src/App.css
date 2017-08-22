@@ -5,7 +5,7 @@
 }
 
 .stats-bar{
-  padding-top:50px!important;
+  padding-top:25px!important;
   padding-left: 100px!important;
 }
 
@@ -26,14 +26,21 @@
   margin-right: 50px!important;
   margin-bottom: 10px!important;
   border-radius: 5%!important;
+  display: inline-block!important;
+}
+
+.gallery-button {
+  margin-left: 36%!important;
+  margin-top: 10px!important;
+  margin-bottom: 10px!important;
 }
 
 .chart {
   height: 500px;
-  width: 700px;
-  margin-right: 15px;
+  width: 95%;
   margin: 10px;
   padding:10px;
+  padding-right:50px;
   border-radius: 5%;
   border-width: 5px;
   border-color: #78909c;
@@ -42,7 +49,7 @@
 
 .photo-gallery{
   background-color: white;
-  height:325px;
+  height:450px;
   width:100%;
   overflow-y: auto;
   overflow-x:hidden;
@@ -62,4 +69,7 @@
 ::-webkit-scrollbar {
     width: 0px!important;
     background: transparent!important; /* make scrollbar transparent */
+}
+.charts-button-group{
+  width:100%!important;
 }

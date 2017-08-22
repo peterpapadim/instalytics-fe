@@ -5,7 +5,7 @@ import {Statistic} from 'semantic-ui-react'
 const Stat = (props) =>
   (
     <div className="column">
-      <Statistic>
+      <Statistic size='tiny'>
         <Statistic.Value>
           {props.count}
         </Statistic.Value>
