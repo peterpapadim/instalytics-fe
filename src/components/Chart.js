@@ -27,7 +27,8 @@ class Chart extends React.Component{
     let height = 500
 
 
-    let radiusScale = d3.scaleSqrt().domain([1, 300]).range([10,150])
+    let radiusScale = d3.scaleSqrt().domain([d3.min(this.props.data, function(d){ return d.likes_count }),
+             d3.max(this.props.data, function(d){ return d.likes_count })]).range([10,65])
 
     console.log("bbubbble time")
 
