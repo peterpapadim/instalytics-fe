@@ -6,13 +6,19 @@ import '../App.css';
 class ChartsContainer extends React.Component{
 
   state = {
-    chartType: 'line'
+    chartType: ''
   }
 
   postsButtonClicked = (event) => {
     this.setState({
-      chartType: 'not-line'
+      chartType: 'line'
     })
+  }
+
+  photosButtonClicked = (event) => {
+      this.setState({
+        chartType: 'bubble'
+      })
   }
 
   render(){
@@ -23,7 +29,7 @@ class ChartsContainer extends React.Component{
         <Button.Group color='blue'>
           <div className="ui equal width grid">
             <button onClick={this.postsButtonClicked} className="ui primary button chart-button">POSTS</button>
-            <Dropdown text='PHOTOS' icon='filter' floating labeled button className='icon chart-button'>
+            <Dropdown text='PHOTOS' icon='filter' onClick={this.photosButtonClicked } floating labeled button className='icon chart-button'>
                 <Dropdown.Menu>
                   <Dropdown.Header icon='tags' content='Filter by' />
                   <Dropdown.Item><Icon name='heart' />Likes</Dropdown.Item>
