@@ -19,7 +19,6 @@ class UserProfile extends React.Component {
           <a onClick={this.props.logout} className="logout-link" href="#">Logout</a>
       </Grid.Column>
      </Grid>
-
     </span>
   )
   }
