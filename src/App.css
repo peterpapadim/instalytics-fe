@@ -51,8 +51,7 @@
   background-color: white;
   height:450px;
   width:100%;
-  overflow-y: auto;
-  overflow-x:hidden;
+
   margin: 10px;
   padding:10px;
   border-radius: 5%;
@@ -92,4 +91,27 @@
   border-width: 5px;
   border-color: #78909c;
   border-style: solid;
+}
+
+.photo-gallery{
+  height: 650px;
+  overflow-y: auto;
+  overflow-x:hidden;
+  border-radius: 5%;
+  padding-left: 10%;
+}
+
+.profile{
+  padding-left: 10%;
+}
+
+.xAxis{
+  stroke-width: 5px;
+  font-size: 14px;
+  font-weight: bold;
+}
+.yAxis{
+  stroke-width: 5px;
+  font-size: 14px;
+  font-weight: bold;
 }

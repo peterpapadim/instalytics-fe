@@ -60,9 +60,11 @@ class TopPhotoContainer extends Component {
       </Grid.Row>
 
       <Grid.Row>
-        <Card.Group itemsPerRow={2}>
-          {this.makePhotos()}
-        </Card.Group>
+        <div className="photo-gallery">
+          <Card.Group itemsPerRow={2}>
+            {this.makePhotos()}
+          </Card.Group>
+        </div>
       </Grid.Row>
 
     </Grid>

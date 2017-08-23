@@ -28,6 +28,19 @@ class ChartsContainer extends React.Component{
       })
   }
 
+  getChartTypeInWords = () => {
+    switch (this.state.chartType){
+      case "line":
+      return "Likes by time of day photo posted"
+      break;
+      case 'bubble-likes':
+      return "Photos by # of likes"
+      return
+      break;
+      case 'bubble-comments':
+      return "Photos by # of comments"
+    }
+  }
   render(){
     return(
       <Grid>
@@ -42,6 +55,7 @@ class ChartsContainer extends React.Component{
             <button onClick={this.postsButtonClicked} className="ui primary button chart-button">POSTS</button>
           </Grid.Column>
           <Grid.Column width={4}>
+            <h3>{this.getChartTypeInWords()}</h3>
           </Grid.Column>
           <Grid.Column width={4}>
             <Dropdown text='PHOTOS' icon='filter' onClick={this.photosButtonClicked } labeled button className='icon chart-button primary'>

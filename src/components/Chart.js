@@ -140,21 +140,25 @@ class Chart extends React.Component{
       .append("image")
 
       let timeParser = d3.timeParse("%H:%M")
+
       let xScale = d3.scaleTime()
       .domain([ timeParser("00:01"), timeParser("23:59")])
-      .range([0,500])
+      .range([50,this.state.width - 80])
+
+      let transHeight = this.state.height - 40
 
       let yScale = d3.scaleLinear()
       .domain([d3.max(this.props.data, function(d){ return d.likes_count }),
                d3.min(this.props.data, function(d){ return d.likes_count })])
-      .range([0,325])
+      .range([25, transHeight - 80])
 
       let xAxis = d3.axisBottom()
       .scale(xScale)
 
+
       svg.append("g").call(xAxis)
       .attr('class', 'xAxis')
-      .attr('transform', 'translate(20,360)')
+      .attr('transform', `translate(0,${transHeight} )`)
 
       let yAxis = d3.axisLeft()
       .scale(yScale)
@@ -163,13 +167,13 @@ class Chart extends React.Component{
 
       svg.append('g').call(yAxis)
       .attr('class', 'yAxis')
-      .attr('transform', 'translate(20,25)')
+      .attr('transform', 'translate(50,79)')
 
       thumbnails.attr("x",function(d,i){ return xScale(timeParser(d.created_time.split('T')[1].substring(0,5))) }  )
       .attr("xlink:href", function(d){return d.thumbnail_url})
       .attr("y", function(d,i){return yScale(d.likes_count)})
-      .attr('width', 40)
-      .attr('height', 40)
+      .attr('width', 80)
+      .attr('height', 80)
       .attr('fill', (d) => { return `url(${d.thumbnail_url})`})
       .on("mouseover", function(d,i){
         console.log(this)
@@ -184,8 +188,8 @@ class Chart extends React.Component{
           console.log(this)
           var newHeight = parseInt(d3.select(this).style("height"))*1.1 + "px";
             d3.select(this)
-            .style("height", '40px')
-            .style("width", '40px')
+            .style("height", '80px')
+            .style("width", '80px')
             .attr('fill', (d) => { return `url(${d.thumbnail_url})`})
           })
 

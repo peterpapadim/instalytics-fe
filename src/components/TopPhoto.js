@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {Card, Image, Icon} from 'semantic-ui-react'
+
 class TopPhoto extends Component {
 
   render(){
     return(
-      <Card>
-        <Image src={this.props.picture.thumbnail_url}/>
+      <Card >
+        <Image className='fluid' src={this.props.picture.thumbnail_url}/>
         <Card.Content extra>
           <span style={{'float': 'left'}}>
             <Icon name='heart'/>
