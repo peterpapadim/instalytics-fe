@@ -15,16 +15,16 @@ class App extends Component {
   }
   componentDidMount(){
     if (!window.location.href.split('?')[1]){
-      window.location = "https://api.instagram.com/oauth/authorize/?client_id=2d821cbcc0c0401a99f69ca68d2c4f04&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=code&scope=public_content+follower_list";
+      window.location = "https://api.instagram.com/oauth/authorize/?client_id=2d821cbcc0c0401a99f69ca68d2c4f04&redirect_uri=https%3A%2F%2Finstalytics-api.herokuapp.com%2F&response_type=code&scope=public_content+follower_list";
     } else {
       console.log("we made it.")
       // There has to be a better way to do this.
       let id = window.location.href.split('?')[1].split('=')[1]
-      let url = `http://localhost:3000/api/v1/users/${id}`
+      let url = `https://instalytics-api.herokuapp.com/api/v1/users/${id}`
       fetch(url)
       .then((resp) => resp.json())
       .then(data => this.setState({ user: data }))
-      let mediaURL = `http://localhost:3000/api/v1/users/${id}/pictures`
+      let mediaURL = `https://instalytics-api.herokuapp.com/api/v1/users/${id}/pictures`
       fetch(mediaURL)
       .then((resp) => resp.json())
       .then((data) => this.setState({ pictures: data },function(){console.log(this.state)}))
