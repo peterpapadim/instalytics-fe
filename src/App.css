@@ -1,4 +1,4 @@
-.profile-img {
+/*.profile-img {
   display: inline;
   margin-top:20px!important;
   margin-left: 10px;
@@ -68,8 +68,28 @@
 
 ::-webkit-scrollbar {
     width: 0px!important;
-    background: transparent!important; /* make scrollbar transparent */
+    background: transparent!important;
 }
 .charts-button-group{
   width:100%!important;
+}*/
+
+.top-bar {
+  background-color: #eceff1;
+}
+
+.stats-bar{
+  padding-top:10px!important;
+}
+
+.chart {
+  height: 650px;
+  width: 80%;
+  /*margin: 10px;*/
+  /*padding:10px;*/
+  /*padding-right:50px;*/
+  border-radius: 5%;
+  border-width: 5px;
+  border-color: #78909c;
+  border-style: solid;
 }

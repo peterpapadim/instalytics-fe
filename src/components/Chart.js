@@ -4,6 +4,23 @@ import '../App.css';
 
 class Chart extends React.Component{
 
+  state = {
+    height: 0,
+    width: 0
+  }
+
+  setSize = () => {
+    this.setState({
+      height: document.getElementsByClassName('chart')[0].offsetHeight,
+      width: document.getElementsByClassName('chart')[0].offsetWidth
+    }, this.updateChart(this.props.type))
+  }
+
+  componentDidMount(){
+    this.setSize()
+    window.addEventListener('resize', this.setSize)
+  }
+
   componentWillReceiveProps = (nextProps) => {
     this.updateChart(nextProps.type)
   }
@@ -26,14 +43,14 @@ class Chart extends React.Component{
   }
 
   makeBubbleChart = (type) => {
-    let width = 700
-    let height = 500
+    let width = this.state.width
+    let height = this.state.height
     let likesOrComments = (d) => {
       return type==="likes" ? d.likes_count : d.comments_count
     }
 
     let radiusScale = d3.scaleSqrt().domain([d3.min(this.props.data, function(d){ return  likesOrComments(d)}),
-             d3.max(this.props.data, function(d){ return likesOrComments(d) })]).range([10,65])
+             d3.max(this.props.data, function(d){ return likesOrComments(d) })]).range([20,100])
 
     console.log("bbubbble time")
 
@@ -176,7 +193,7 @@ class Chart extends React.Component{
   }
   render(){
     return (
-      <div style={{'height': '100%', 'padding-left': '15px'}}>
+      <div className='chart'>
         <svg  width="100%" height="100%" className="svg">
         </svg>
       </div>

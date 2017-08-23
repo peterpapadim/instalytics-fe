@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import TopPhoto from './TopPhoto'
 import '../App.css';
-import {Button, Dropdown,Icon,Card} from 'semantic-ui-react'
+import {Button, Dropdown, Icon, Card, Grid} from 'semantic-ui-react'
 
 class TopPhotoContainer extends Component {
 
@@ -45,25 +45,27 @@ class TopPhotoContainer extends Component {
 
   render(){
     return(
-    <div>
-      <h2 className="photo-gallery-header">Top Recent Photos</h2>
-      <div className="ui equal width grid">
-        <Button.Group color='blue' className="gallery-button" size='tiny'>
-          <Dropdown text='SORT BY' icon='filter' floating labeled button className='icon' >
+    <Grid>
+      <Grid.Row centered='true'>
+        <h2 className="photo-gallery-header">Top Recent Photos</h2>
+      </Grid.Row>
+
+      <Grid.Row centered='true'>
+          <Dropdown text='SORT BY' icon='filter' floating labeled button className='icon primary' >
             <Dropdown.Menu >
               <Dropdown.Item onClick={this.likesButtonClicked}><Icon name='heart'/>Likes</Dropdown.Item>
               <Dropdown.Item onClick={this.commentsButtonClicked}><Icon name='comment' />Comments</Dropdown.Item>
             </Dropdown.Menu>
           </Dropdown>
-        </Button.Group>
-      </div>
+      </Grid.Row>
 
-      <div className="photo-gallery">
+      <Grid.Row>
         <Card.Group itemsPerRow={2}>
           {this.makePhotos()}
         </Card.Group>
-      </div>
-    </div>
+      </Grid.Row>
+
+    </Grid>
   )
   }
 }

@@ -6,6 +6,7 @@ import UserProfile from './components/UserProfile'
 import StatsSummaryBar from "./components/StatsSummaryBar"
 import TopPhotoContainer from "./components/TopPhotoContainer"
 import ChartsContainer from "./components/ChartsContainer"
+import {Grid} from 'semantic-ui-react'
 class App extends Component {
 
   state = {
@@ -33,16 +34,24 @@ class App extends Component {
 
   render() {
     return (
-      <div className="App ui grid">
-        <div className="six wide column">
-          <UserProfile user={this.state.user}/>
-          <TopPhotoContainer pictures={this.state.pictures}/>
-        </div>
-        <div className="ten wide column">
-          <StatsSummaryBar user={this.state.user}/>
-          <ChartsContainer pictures={this.state.pictures}/>
-        </div>
-      </div>
+      <Grid>
+        <Grid.Row verticalAlign='middle' className='top-bar'>
+          <Grid.Column width={6}>
+            <UserProfile user={this.state.user}/>
+          </Grid.Column>
+          <Grid.Column width={10} stretched='true'>
+            <StatsSummaryBar user={this.state.user}/>
+          </Grid.Column>
+        </Grid.Row>
+        <Grid.Row>
+          <Grid.Column width={6} textAlign='center'>
+            <TopPhotoContainer pictures={this.state.pictures}/>
+          </Grid.Column>
+          <Grid.Column width={10} textAlign='center'>
+            <ChartsContainer pictures={this.state.pictures}/>
+          </Grid.Column>
+        </Grid.Row>
+      </Grid>
     );
   }
 }

@@ -1,5 +1,5 @@
 import React from 'react';
-import { Dropdown, Icon, Button } from 'semantic-ui-react';
+import { Dropdown, Icon, Button, Segment, Grid } from 'semantic-ui-react';
 import Chart from './Chart'
 import '../App.css';
 
@@ -30,25 +30,36 @@ class ChartsContainer extends React.Component{
 
   render(){
     return(
-      <div>
-        <br />
-        <h2 className='charts-header'>Charts</h2>
-        <Button.Group color='blue' size='tiny' className="charts-button-group centered" fluid>
-          <div className="ui equal width grid centered">
+      <Grid>
+        <Grid.Row width={16} centered='true'>
+          <h2 className='charts-header'>Charts</h2>
+        </Grid.Row>
+
+        <Grid.Row width={16}>
+          <Grid.Column width={2}>
+          </Grid.Column>
+          <Grid.Column width={4}>
             <button onClick={this.postsButtonClicked} className="ui primary button chart-button">POSTS</button>
-            <Dropdown text='PHOTOS' icon='filter' onClick={this.photosButtonClicked } floating labeled button className='icon chart-button'>
+          </Grid.Column>
+          <Grid.Column width={4}>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <Dropdown text='PHOTOS' icon='filter' onClick={this.photosButtonClicked } labeled button className='icon chart-button primary'>
                 <Dropdown.Menu>
                   <Dropdown.Header icon='tags' content='Filter by' />
                   <Dropdown.Item onClick={this.likesBubbleClicked}><Icon name='heart' />Likes</Dropdown.Item>
                   <Dropdown.Item onClick={this.commentsBubbleClicked}><Icon name='comment' />Comments</Dropdown.Item>
                 </Dropdown.Menu>
             </Dropdown>
-          </div>
-        </Button.Group>
-        <div className='chart'>
+          </Grid.Column>
+          <Grid.Column width={2}>
+          </Grid.Column>
+        </Grid.Row>
+
+        <Grid.Row centered='true'>
           <Chart data={this.props.pictures} type={this.state.chartType}/>
-        </div>
-      </div>
+        </Grid.Row>
+      </Grid>
     )
   }
 }
