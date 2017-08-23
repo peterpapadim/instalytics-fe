@@ -11,8 +11,10 @@ class App extends Component {
 
   state = {
     user: {},
-    pictures: {}
+    pictures: {},
+    logout: false
   }
+
   componentDidMount(){
     if (!window.location.href.split('?')[1]){
       window.location = "https://api.instagram.com/oauth/authorize/?client_id=2d821cbcc0c0401a99f69ca68d2c4f04&redirect_uri=http%3A%2F%2Flocalhost%3A3000%2F&response_type=code&scope=public_content+follower_list";
@@ -35,19 +37,32 @@ class App extends Component {
 
   }
 
+  logout=()=>{
+    this.setState({
+      logout: true
+    }, ()=>{
+      setTimeout(function(){
+        window.location = "http://localhost:3001"
+      },1000)
+    })
+
+
+  }
+
   render() {
     return (
+      <div>
       <Grid>
-        <Grid.Row verticalAlign='middle' className='top-bar'>
+        <Grid.Row verticalAlign='middle' className='top-bar' color='blue'>
           <Grid.Column width={6}>
-            <UserProfile user={this.state.user}/>
+            <UserProfile user={this.state.user} logout={this.logout}/>
           </Grid.Column>
           <Grid.Column width={10} stretched='true'>
             <StatsSummaryBar user={this.state.user}/>
           </Grid.Column>
         </Grid.Row>
-        <Grid.Row>
-          <Grid.Column width={6} textAlign='center'>
+        <Grid.Row className='body-background'>
+          <Grid.Column width={6} textAlign='center' >
             <TopPhotoContainer pictures={this.state.pictures}/>
           </Grid.Column>
           <Grid.Column width={10} textAlign='center'>
@@ -55,6 +70,8 @@ class App extends Component {
           </Grid.Column>
         </Grid.Row>
       </Grid>
+        {(this.state.logout)? <iframe src="https://instagram.com/accounts/logout/" width="0" height="0" />:null}
+      </div>
     );
   }
 }

@@ -5,8 +5,10 @@ class TopPhoto extends Component {
 
   render(){
     return(
-      <Card >
-        <Image className='fluid' src={this.props.picture.thumbnail_url}/>
+      <Card className="card">
+        <div className="top-photo-container">
+          <Image className='fluid top-photo-image' src={this.props.picture.standard_resolution_url}/>
+        </div>
         <Card.Content extra>
           <span style={{'float': 'left'}}>
             <Icon name='heart'/>

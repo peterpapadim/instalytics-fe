@@ -45,9 +45,9 @@ class TopPhotoContainer extends Component {
 
   render(){
     return(
-    <Grid>
+    <Grid className='gallery-container'>
       <Grid.Row centered='true'>
-        <h2 className="photo-gallery-header">Top Recent Photos</h2>
+        <h1 className="photo-gallery-header">Top Recent Photos</h1>
       </Grid.Row>
 
       <Grid.Row centered='true'>

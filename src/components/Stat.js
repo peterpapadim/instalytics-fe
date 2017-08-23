@@ -4,12 +4,12 @@ import {Statistic} from 'semantic-ui-react'
 
 const Stat = (props) =>
   (
-    <div className="column">
-      <Statistic size='small'>
-        <Statistic.Value>
+    <div >
+      <Statistic size='small' color="lightGrey">
+        <Statistic.Value className='stat'>
           {props.count}
         </Statistic.Value>
-        <Statistic.Label>
+        <Statistic.Label className='stat'>
           {props.category}
         </Statistic.Label>
       </Statistic>

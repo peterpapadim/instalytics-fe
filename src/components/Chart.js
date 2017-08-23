@@ -1,6 +1,7 @@
 import React from 'react';
 import * as d3 from 'd3';
 import '../App.css';
+import {Loader} from 'semantic-ui-react'
 
 class Chart extends React.Component{
 
@@ -39,7 +40,10 @@ class Chart extends React.Component{
         this.makeBubbleChart("comments");
         break;
     }
+  }
 
+  displayLoader(){
+    if(this.props.type==="") return (<Loader active/>)
   }
 
   makeBubbleChart = (type) => {
@@ -75,6 +79,7 @@ class Chart extends React.Component{
       .attr("xlink:href", function(d){
         return d.thumbnail_url
       })
+
 
     let circles = svg.selectAll("circle").data(this.props.data)
     .enter().append("circle")
@@ -162,8 +167,7 @@ class Chart extends React.Component{
 
       let yAxis = d3.axisLeft()
       .scale(yScale)
-      .tickValues([0,20,40,60,80,100])
-      .ticks(6)
+      .ticks(10)
 
       svg.append('g').call(yAxis)
       .attr('class', 'yAxis')
@@ -198,6 +202,7 @@ class Chart extends React.Component{
   render(){
     return (
       <div className='chart'>
+        {this.displayLoader()}
         <svg  width="100%" height="100%" className="svg">
         </svg>
       </div>

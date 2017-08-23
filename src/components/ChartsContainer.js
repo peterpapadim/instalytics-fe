@@ -9,6 +9,11 @@ class ChartsContainer extends React.Component{
     chartType: ''
   }
 
+  componentDidMount(){
+    
+    setTimeout(()=>this.likesBubbleClicked(this), 2000)
+  }
+
   postsButtonClicked = (event) => {
     this.setState({
       chartType: 'line'
@@ -16,7 +21,7 @@ class ChartsContainer extends React.Component{
   }
 
   likesBubbleClicked = (event) => {
-      event.preventDefault()
+      //event.preventDefault()
       this.setState({
         chartType: 'bubble-likes'
       })
@@ -45,17 +50,10 @@ class ChartsContainer extends React.Component{
     return(
       <Grid>
         <Grid.Row width={16} centered='true'>
-          <h2 className='charts-header'>Charts</h2>
+          <h1 className='charts-header'>Charts</h1>
         </Grid.Row>
-
         <Grid.Row width={16}>
           <Grid.Column width={2}>
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <button onClick={this.postsButtonClicked} className="ui primary button chart-button">POSTS</button>
-          </Grid.Column>
-          <Grid.Column width={4}>
-            <h3>{this.getChartTypeInWords()}</h3>
           </Grid.Column>
           <Grid.Column width={4}>
             <Dropdown text='PHOTOS' icon='filter' onClick={this.photosButtonClicked } labeled button className='icon chart-button primary'>
@@ -66,10 +64,15 @@ class ChartsContainer extends React.Component{
                 </Dropdown.Menu>
             </Dropdown>
           </Grid.Column>
+          <Grid.Column width={4}>
+            <h3>{this.getChartTypeInWords()}</h3>
+          </Grid.Column>
+          <Grid.Column width={4}>
+            <button onClick={this.postsButtonClicked} className="ui primary button chart-button">POSTS</button>
+          </Grid.Column>
           <Grid.Column width={2}>
           </Grid.Column>
         </Grid.Row>
-
         <Grid.Row centered='true'>
           <Chart data={this.props.pictures} type={this.state.chartType}/>
         </Grid.Row>
